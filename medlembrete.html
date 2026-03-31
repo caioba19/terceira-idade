@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MedLembrete — Nunca mais esqueça um medicamento. Alarmes, doses e notificações para a família." />
+  <title>MedLembrete — SêniorCare</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            head: ['"DM Serif Display"', 'Georgia', 'serif'],
+            body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            navy:    { DEFAULT: '#1b3358', dark: '#0f1f36', mid: '#2a4a7f' },
+            blue:    { soft: '#dce8f9', mid: '#a8c5ef', strong: '#2563eb' },
+            cream:   '#faf8f4',
+            amber:   '#d48000',
+          },
+          fontSize: {
+            'base-lg': ['1.15rem', { lineHeight: '1.75' }],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ---- tokens globais ---- */
+    html { font-size: 19px; scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', Georgia, serif; }
+
+    /* skip link */
+    .skip-link { position:absolute; top:-100%; left:1rem; background:#1b3358; color:#fff; padding:.5rem 1rem; border-radius:0 0 8px 8px; font-weight:700; z-index:9999; transition:top .2s; }
+    .skip-link:focus { top:0; }
+
+    /* botão voltar fixo */
+    .back-btn {
+      position: fixed; top: 1rem; left: 1rem; z-index: 100;
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #fff; color: #1b3358;
+      border: 2px solid #1b3358;
+      padding: .6rem 1.2rem; border-radius: 50px;
+      font-weight: 700; font-size: .9rem;
+      box-shadow: 0 4px 16px rgba(27,51,88,.18);
+      transition: background .2s, color .2s;
+      min-height: 48px;
+      text-decoration: none;
+    }
+    .back-btn:hover { background: #1b3358; color: #fff; }
+    .back-btn:focus-visible { outline: 4px solid #d48000; outline-offset: 3px; }
+
+    /* mockup celular */
+    .phone-shell {
+      width: 260px; margin: 0 auto;
+      background: #0f1f36; border-radius: 40px;
+      padding: 14px 10px; box-shadow: 0 30px 80px rgba(27,51,88,.35);
+      position: relative;
+    }
+    .phone-screen {
+      background: #fff; border-radius: 28px; overflow: hidden;
+      min-height: 480px; display: flex; flex-direction: column;
+    }
+    .phone-notch {
+      background: #0f1f36; height: 28px;
+      border-radius: 0 0 16px 16px;
+      width: 110px; margin: 0 auto;
+    }
+
+    /* animação cards de passo */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .step-card { animation: fadeUp .5s ease both; }
+    .step-card:nth-child(1) { animation-delay: .05s; }
+    .step-card:nth-child(2) { animation-delay: .15s; }
+    .step-card:nth-child(3) { animation-delay: .25s; }
+
+    /* scroll reveal */
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+    /* foco visível global */
+    *:focus-visible { outline: 4px solid #d48000; outline-offset: 3px; }
+  </style>
+</head>
+<body class="bg-cream text-gray-800 antialiased">
+
+  <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+  <!-- Botão voltar fixo -->
+  <a href="index.html" class="back-btn" aria-label="Voltar para a página inicial do SêniorCare">
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+    Voltar ao Início
+  </a>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="relative bg-navy pt-28 pb-16 overflow-hidden" aria-labelledby="hero-title">
+
+      <!-- mancha decorativa -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full" style="background:radial-gradient(circle, rgba(37,99,235,.18) 0%, transparent 70%);"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 rounded-full" style="background:radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 70%);"></div>
+      </div>
+
+      <div class="container mx-auto px-6 max-w-5xl relative">
+
+        <!-- badge -->
+        <span class="inline-block bg-blue-500 bg-opacity-20 text-blue-200 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
+          <i class="fa-solid fa-pills mr-2" aria-hidden="true"></i>Saúde · MedLembrete
+        </span>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 id="hero-title" class="font-head text-white leading-tight mb-5" style="font-size:clamp(2rem,5vw,3rem);">
+              Nunca mais <em class="not-italic text-blue-300">esqueça</em><br>um remédio sequer.
+            </h1>
+            <p class="text-blue-100 mb-8 leading-relaxed" style="font-size:1.1rem;">
+              O MedLembrete avisa na hora certa, com alarme visual e sonoro em tela cheia, e ainda notifica a família se a dose for esquecida. Saúde em dia, sem depender da memória.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="#download" class="inline-flex items-center gap-2 bg-white text-navy font-bold rounded-full px-8 py-4 text-lg shadow-lg hover:bg-blue-50 transition-all min-h-[52px]">
+                <i class="fa-brands fa-google-play" aria-hidden="true"></i> Baixar Grátis
+              </a>
+              <a href="#como-funciona" class="inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-6 py-4 hover:bg-white hover:text-navy transition-all min-h-[52px]">
+                Como funciona? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Placeholder de imagem / ícone ilustrativo -->
+          <div class="flex justify-center" aria-hidden="true">
+            <div class="w-64 h-64 rounded-3xl flex flex-col items-center justify-center gap-4 shadow-2xl" style="background:rgba(37,99,235,.2); border:2px solid rgba(255,255,255,.15);">
+              <div class="w-24 h-24 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <i class="fa-solid fa-pills text-white text-5xl"></i>
+              </div>
+              <p class="text-white font-bold text-xl">MedLembrete</p>
+              <p class="text-blue-200 text-sm text-center px-4">Sua farmácia no bolso</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- trust bar -->
+        <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-white border-opacity-10">
+          <span class="flex items-center gap-2 text-blue-100 text-sm font-semibold"><i class="fa-solid fa-circle-check text-blue-300" aria-hidden="true"></i> 100% Gratuito</span>
+          <span class="flex items-center gap-2 text-blue-100 text-sm font-semibold"><i class="fa-solid fa-mobile-screen text-blue-300" aria-hidden="true"></i> Android e iOS</span>
+          <span class="flex items-center gap-2 text-blue-100 text-sm font-semibold"><i class="fa-solid fa-shield-halved text-blue-300" aria-hidden="true"></i> Sem anúncios</span>
+          <span class="flex items-center gap-2 text-blue-100 text-sm font-semibold"><i class="fa-solid fa-language text-blue-300" aria-hidden="true"></i> Em português</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMO FUNCIONA
+    ============================================================ -->
+    <section id="como-funciona" class="py-20 bg-white" aria-labelledby="cf-title">
+      <div class="container mx-auto px-6 max-w-5xl">
+
+        <div class="text-center mb-14 reveal">
+          <span class="inline-block bg-blue-soft text-navy font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-4">Como funciona</span>
+          <h2 id="cf-title" class="font-head text-navy leading-tight mb-3" style="font-size:clamp(1.7rem,3.5vw,2.4rem);">
+            Simples como apertar <em class="not-italic text-blue-strong">um botão</em>
+          </h2>
+          <p class="text-gray-500 max-w-xl mx-auto" style="font-size:1.05rem;">Três passos bastam para o MedLembrete cuidar da sua rotina de medicamentos.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Passo 1 -->
+          <div class="step-card reveal bg-blue-soft rounded-2xl p-8 border border-blue-mid border-opacity-40">
+            <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mb-5 shadow-md">
+              <i class="fa-solid fa-plus text-white text-2xl" aria-hidden="true"></i>
+            </div>
+            <span class="text-xs font-bold text-blue-strong tracking-widest uppercase">Passo 01</span>
+            <h3 class="font-head text-navy text-xl mt-2 mb-3">Cadastro fácil</h3>
+            <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
+              Digite o nome do remédio, o horário e a dosagem. Ou peça ajuda a um familiar para configurar — leva menos de 2 minutos. O app aceita quantos medicamentos forem necessários.
+            </p>
+          </div>
+
+          <!-- Passo 2 -->
+          <div class="step-card reveal bg-blue-soft rounded-2xl p-8 border border-blue-mid border-opacity-40" style="animation-delay:.12s">
+            <div class="w-16 h-16 bg-blue-strong rounded-2xl flex items-center justify-center mb-5 shadow-md">
+              <i class="fa-solid fa-bell text-white text-2xl" aria-hidden="true"></i>
+            </div>
+            <span class="text-xs font-bold text-blue-strong tracking-widest uppercase">Passo 02</span>
+            <h3 class="font-head text-navy text-xl mt-2 mb-3">Alarme em tela cheia</h3>
+            <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
+              Na hora certa, a tela do celular acende com letras enormes, som alto e vibração. Fica piscando até você confirmar que tomou — sem risco de perder o aviso.
+            </p>
+          </div>
+
+          <!-- Passo 3 -->
+          <div class="step-card reveal bg-blue-soft rounded-2xl p-8 border border-blue-mid border-opacity-40" style="animation-delay:.24s">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background:#1e7a5e;">
+              <i class="fa-solid fa-people-group text-white text-2xl" aria-hidden="true"></i>
+            </div>
+            <span class="text-xs font-bold text-blue-strong tracking-widest uppercase">Passo 03</span>
+            <h3 class="font-head text-navy text-xl mt-2 mb-3">Aviso para a família</h3>
+            <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
+              Se o alarme não for confirmado em até 15 minutos, o app envia automaticamente uma notificação para os contatos da família. Todos ficam tranquilos, à distância.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BENEFÍCIOS
+    ============================================================ -->
+    <section class="py-20" style="background:#f0f5fd;" aria-labelledby="ben-title">
+      <div class="container mx-auto px-6 max-w-5xl">
+
+        <div class="text-center mb-14 reveal">
+          <span class="inline-block bg-white text-navy font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-4 shadow-sm">Benefícios</span>
+          <h2 id="ben-title" class="font-head text-navy leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.4rem);">
+            Pensado para <em class="not-italic text-blue-strong">duas pessoas</em> ao mesmo tempo
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+          <!-- Para o idoso -->
+          <article class="reveal bg-white rounded-2xl p-8 shadow-sm border border-blue-soft" aria-labelledby="ben-senior">
+            <div class="text-5xl mb-4" aria-hidden="true">🧓</div>
+            <p class="text-xs font-bold tracking-widest uppercase text-blue-strong mb-1">Para o idoso</p>
+            <h3 id="ben-senior" class="font-head text-navy text-2xl mb-4">Cuide da saúde sem complicação</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3 text-gray-700" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-strong mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Letras e botões gigantes — fácil de ler mesmo sem óculos</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-strong mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Alarme impossível de ignorar: som, vibração e tela piscando</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-strong mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Histórico de doses para mostrar ao médico na consulta</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-strong mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Sem propagandas, sem menus confusos — só o essencial</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Para a família -->
+          <article class="reveal bg-navy rounded-2xl p-8 shadow-sm" aria-labelledby="ben-family" style="animation-delay:.12s">
+            <div class="text-5xl mb-4" aria-hidden="true">👨‍👩‍👧</div>
+            <p class="text-xs font-bold tracking-widest uppercase text-blue-300 mb-1">Para a família</p>
+            <h3 id="ben-family" class="font-head text-white text-2xl mb-4">Acompanhe à distância com paz</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3 text-blue-100" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-300 mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Notificação imediata se uma dose for esquecida</span>
+              </li>
+              <li class="flex items-start gap-3 text-blue-100" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-300 mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Veja o histórico de adesão do tratamento pelo celular</span>
+              </li>
+              <li class="flex items-start gap-3 text-blue-100" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-300 mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Configure os remédios remotamente e ajude de onde estiver</span>
+              </li>
+              <li class="flex items-start gap-3 text-blue-100" style="font-size:1rem;">
+                <i class="fa-solid fa-check text-blue-300 mt-1 flex-shrink-0" aria-hidden="true"></i>
+                <span>Durma tranquilo sabendo que o tratamento está sendo seguido</span>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MOCKUP DO APP
+    ============================================================ -->
+    <section class="py-20 bg-white" aria-labelledby="mockup-title">
+      <div class="container mx-auto px-6 max-w-5xl">
+
+        <div class="text-center mb-14 reveal">
+          <span class="inline-block bg-blue-soft text-navy font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-4">Interface do App</span>
+          <h2 id="mockup-title" class="font-head text-navy leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.4rem);">
+            Veja como é <em class="not-italic text-blue-strong">simples</em> usar
+          </h2>
+          <p class="text-gray-500 mt-2" style="font-size:1.05rem;">Telas pensadas para clareza máxima — sem distrações, sem letras miúdas.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center gap-12 justify-center">
+
+          <!-- Mockup 1: Tela principal -->
+          <div class="reveal" aria-label="Mockup da tela principal do MedLembrete">
+            <p class="text-center text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">Tela Inicial</p>
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <!-- Header app -->
+                <div class="bg-navy p-4 text-center">
+                  <p class="text-white font-bold text-lg" style="font-family:'DM Serif Display',serif;">MedLembrete</p>
+                  <p class="text-blue-200 text-sm">Segunda, 14 de julho</p>
+                </div>
+                <!-- Próxima dose destaque -->
+                <div class="bg-blue-soft mx-3 my-3 rounded-xl p-4 border border-blue-mid border-opacity-50">
+                  <p class="text-xs font-bold text-blue-strong uppercase tracking-wide mb-1">Próxima dose</p>
+                  <p class="font-bold text-navy text-xl">Atenolol 25mg</p>
+                  <p class="text-gray-500 text-sm">às 14:00 · 1 comprimido</p>
+                  <div class="mt-3 bg-navy text-white text-center rounded-lg py-2 text-sm font-bold">✓ Confirmar dose</div>
+                </div>
+                <!-- Lista de remédios -->
+                <div class="px-3 pb-3 flex flex-col gap-2">
+                  <p class="text-xs font-bold text-gray-400 uppercase tracking-wide px-1">Hoje</p>
+                  <div class="flex items-center gap-3 bg-gray-50 rounded-lg p-3">
+                    <div class="w-9 h-9 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-lg">✓</div>
+                    <div>
+                      <p class="font-bold text-navy text-sm">Metformina</p>
+                      <p class="text-gray-400 text-xs">08:00 · Tomado</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 bg-gray-50 rounded-lg p-3">
+                    <div class="w-9 h-9 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 text-lg">⏰</div>
+                    <div>
+                      <p class="font-bold text-navy text-sm">Atenolol</p>
+                      <p class="text-gray-400 text-xs">14:00 · Aguardando</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 bg-gray-50 rounded-lg p-3">
+                    <div class="w-9 h-9 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-lg">💊</div>
+                    <div>
+                      <p class="font-bold text-navy text-sm">AAS 100mg</p>
+                      <p class="text-gray-400 text-xs">20:00 · Pendente</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mockup 2: Tela de alarme -->
+          <div class="reveal" aria-label="Mockup da tela de alarme do MedLembrete" style="animation-delay:.15s">
+            <p class="text-center text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">Tela de Alarme</p>
+            <div class="phone-shell">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="flex flex-col items-center justify-center flex-1 bg-navy h-full p-6 gap-4">
+                  <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                    <i class="fa-solid fa-bell text-white text-4xl"></i>
+                  </div>
+                  <p class="text-blue-200 text-sm font-bold uppercase tracking-widest">Hora do remédio!</p>
+                  <p class="text-white font-bold text-center" style="font-family:'DM Serif Display',serif; font-size:1.6rem;">Atenolol 25mg</p>
+                  <p class="text-blue-200 text-center text-sm">1 comprimido · às 14:00</p>
+                  <div class="w-full mt-4 bg-white text-navy font-bold text-center rounded-xl py-4 text-lg shadow">
+                    ✓ Tomei o remédio
+                  </div>
+                  <button class="text-blue-300 text-sm underline">Adiar 10 minutos</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA FINAL
+    ============================================================ -->
+    <section id="download" class="py-20" style="background: linear-gradient(135deg, #1b3358 0%, #2563eb 100%);" aria-labelledby="cta-title">
+      <div class="container mx-auto px-6 max-w-3xl text-center">
+        <div class="reveal">
+          <span class="inline-block bg-white bg-opacity-15 text-white font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-6">Baixe agora</span>
+          <h2 id="cta-title" class="font-head text-white leading-tight mb-4" style="font-size:clamp(1.8rem,4vw,2.8rem);">
+            Comece hoje a cuidar<br>da sua saúde do jeito certo.
+          </h2>
+          <p class="text-blue-100 mb-10 leading-relaxed" style="font-size:1.1rem;">
+            Gratuito, sem anúncios e em português. O MedLembrete já está pronto para cuidar de você — é só baixar.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#" class="inline-flex items-center justify-center gap-3 bg-white text-navy font-bold rounded-full px-10 py-5 text-lg shadow-xl hover:bg-blue-50 transition-all min-h-[60px]">
+              <i class="fa-brands fa-google-play text-xl" aria-hidden="true"></i>
+              Baixar no Google Play
+            </a>
+            <a href="#" class="inline-flex items-center justify-center gap-3 border-2 border-white text-white font-bold rounded-full px-10 py-5 text-lg hover:bg-white hover:text-navy transition-all min-h-[60px]">
+              <i class="fa-brands fa-app-store-ios text-xl" aria-hidden="true"></i>
+              Baixar na App Store
+            </a>
+          </div>
+          <p class="text-blue-200 text-sm mt-8">
+            <i class="fa-solid fa-shield-halved mr-1" aria-hidden="true"></i>
+            Seus dados são seus. Nunca vendemos informações pessoais.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER simples -->
+  <footer class="bg-navy-dark py-8 text-center" style="background:#0f1f36;" role="contentinfo">
+    <a href="index.html" class="inline-flex items-center gap-2 text-blue-300 hover:text-white font-semibold transition-colors text-sm mb-3">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar para o SêniorCare
+    </a>
+    <p class="text-gray-500 text-xs mt-2">© 2025 SêniorCare · MedLembrete · Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (motionOK) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+
+</body>
+</html>
