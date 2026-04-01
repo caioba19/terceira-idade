@@ -225,6 +225,12 @@
       outline-offset: 3px;
     }
 
+    /* Botão ghost branco — hover controlado por CSS (sem onmouseover inline) */
+    .btn-ghost-white-coral:hover,
+    .btn-ghost-white-coral:focus-visible {
+      color: #c9431f;
+    }
+
     @media (max-width: 640px) {
       html {
         font-size: 16px;
@@ -245,7 +251,7 @@
 
   <a href="#main" class="skip-link">Pular para o conteúdo</a>
 
-  <a href="index.html" class="back-btn" aria-label="Voltar para a página inicial do SêniorCare">
+  <a href="../index.html" class="back-btn" aria-label="Voltar para a página inicial do SêniorCare">
     <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
     Voltar ao Início
   </a>
@@ -288,8 +294,7 @@
                 <i class="fa-brands fa-google-play" aria-hidden="true"></i> Baixar Grátis
               </a>
               <a href="#como-funciona"
-                class="inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-6 py-4 hover:bg-white transition-all min-h-[52px]"
-                onmouseover="this.style.color='#c9431f'" onmouseout="this.style.color='#fff'">
+                class="btn-ghost-white-coral inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-6 py-4 hover:bg-white transition-all min-h-[52px]">
                 Como funciona? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </a>
             </div>
@@ -435,7 +440,7 @@
             </p>
           </div>
           <div class="reveal bg-white rounded-2xl p-7 shadow-sm border"
-            style="border-color:rgba(201,67,31,.15); animation-delay:.12s;">
+            style="border-color:rgba(201,67,31,.15); transition-delay:.12s;">
             <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:#fce4dc;">
               <i class="fa-solid fa-location-dot text-2xl" style="color:#c9431f;" aria-hidden="true"></i>
             </div>
@@ -446,7 +451,7 @@
             </p>
           </div>
           <div class="reveal bg-white rounded-2xl p-7 shadow-sm border"
-            style="border-color:rgba(201,67,31,.15); animation-delay:.24s;">
+            style="border-color:rgba(201,67,31,.15); transition-delay:.24s;">
             <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4" style="background:#fce4dc;">
               <i class="fa-solid fa-phone-volume text-2xl" style="color:#c9431f;" aria-hidden="true"></i>
             </div>
@@ -501,7 +506,7 @@
             </ul>
           </article>
 
-          <article class="reveal rounded-2xl p-8 shadow-sm" style="background:#1b3358; animation-delay:.12s;"
+          <article class="reveal rounded-2xl p-8 shadow-sm" style="background:#1b3358; transition-delay:.12s;"
             aria-labelledby="ben-family">
             <div class="text-5xl mb-4" aria-hidden="true">👨‍👩‍👧</div>
             <p class="text-xs font-bold tracking-widest uppercase mb-1" style="color:#f08060;">Para a família</p>
@@ -600,7 +605,7 @@
           </div>
 
           <!-- Mockup tela de alerta enviado -->
-          <div class="reveal" aria-label="Mockup da tela de confirmação de alerta SOS" style="animation-delay:.15s">
+          <div class="reveal" aria-label="Mockup da tela de confirmação de alerta SOS" style="transition-delay:.15s">
             <p class="text-center text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">Alerta Enviado</p>
             <div class="phone-shell">
               <div class="phone-notch"></div>
@@ -637,7 +642,8 @@
                       </div>
                     </div>
                   </div>
-                  <button class="w-full bg-white font-bold rounded-xl py-3 text-sm" style="color:#c9431f;">
+                  <button type="button" class="w-full bg-white font-bold rounded-xl py-3 text-sm"
+                    style="color:#c9431f;">
                     Cancelar alerta
                   </button>
                 </div>
@@ -672,8 +678,7 @@
               Baixar no Google Play
             </a>
             <a href="javascript:void(0)"
-              class="inline-flex items-center justify-center gap-3 border-2 border-white text-white font-bold rounded-full px-10 py-5 text-lg hover:bg-white transition-all min-h-[60px]"
-              onmouseover="this.style.color='#c9431f'" onmouseout="this.style.color='#fff'">
+              class="btn-ghost-white-coral inline-flex items-center justify-center gap-3 border-2 border-white text-white font-bold rounded-full px-10 py-5 text-lg hover:bg-white transition-all min-h-[60px]">
               <i class="fa-brands fa-app-store-ios text-xl" aria-hidden="true"></i>
               Baixar na App Store
             </a>

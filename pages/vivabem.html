@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VivaBem — Exercícios leves, jogos cognitivos e dicas de saúde para a terceira idade." />
+  <meta name="description"
+    content="VivaBem — Exercícios leves, jogos cognitivos e dicas de saúde para a terceira idade." />
   <title>VivaBem — SêniorCare</title>
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon-vivabem.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -21,8 +25,8 @@
             body: ['"DM Sans"', 'system-ui', 'sans-serif'],
           },
           colors: {
-            teal:  { DEFAULT: '#1e7a5e', dark: '#155c45', light: '#d0f0e5', mid: '#7ed9b8' },
-            navy:  { DEFAULT: '#1b3358', dark: '#0f1f36' },
+            teal: { DEFAULT: '#1e7a5e', dark: '#155c45', light: '#d0f0e5', mid: '#7ed9b8' },
+            navy: { DEFAULT: '#1b3358', dark: '#0f1f36' },
             cream: '#faf8f4',
             amber: '#d48000',
           }
@@ -32,59 +36,163 @@
   </script>
 
   <style>
-    html { font-size: 19px; scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; }
-    h1,h2,h3,h4 { font-family: 'DM Serif Display', Georgia, serif; }
+    html {
+      font-size: 19px;
+      scroll-behavior: smooth;
+    }
 
-    .skip-link { position:absolute; top:-100%; left:1rem; background:#1b3358; color:#fff; padding:.5rem 1rem; border-radius:0 0 8px 8px; font-weight:700; z-index:9999; transition:top .2s; }
-    .skip-link:focus { top:0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'DM Serif Display', Georgia, serif;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: #1b3358;
+      color: #fff;
+      padding: .5rem 1rem;
+      border-radius: 0 0 8px 8px;
+      font-weight: 700;
+      z-index: 9999;
+      transition: top .2s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
 
     .back-btn {
-      position: fixed; top: 1rem; left: 1rem; z-index: 100;
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: #fff; color: #1e7a5e;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #fff;
+      color: #1e7a5e;
       border: 2px solid #1e7a5e;
-      padding: .6rem 1.2rem; border-radius: 50px;
-      font-weight: 700; font-size: .9rem;
-      box-shadow: 0 4px 16px rgba(30,122,94,.2);
+      padding: .6rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .9rem;
+      box-shadow: 0 4px 16px rgba(30, 122, 94, .2);
       transition: background .2s, color .2s;
       min-height: 48px;
       text-decoration: none;
     }
-    .back-btn:hover { background: #1e7a5e; color: #fff; }
-    .back-btn:focus-visible { outline: 4px solid #d48000; outline-offset: 3px; }
+
+    .back-btn:hover {
+      background: #1e7a5e;
+      color: #fff;
+    }
+
+    .back-btn:focus-visible {
+      outline: 4px solid #d48000;
+      outline-offset: 3px;
+    }
 
     /* Mockup celular */
     .phone-shell {
-      width: 260px; margin: 0 auto;
-      background: #0f1f36; border-radius: 40px;
-      padding: 14px 10px; box-shadow: 0 30px 80px rgba(27,51,88,.3);
+      width: 260px;
+      margin: 0 auto;
+      background: #0f1f36;
+      border-radius: 40px;
+      padding: 14px 10px;
+      box-shadow: 0 30px 80px rgba(27, 51, 88, .3);
     }
-    .phone-screen { background: #fff; border-radius: 28px; overflow: hidden; min-height: 480px; display: flex; flex-direction: column; }
-    .phone-notch { background: #0f1f36; height: 28px; border-radius: 0 0 16px 16px; width: 110px; margin: 0 auto; }
+
+    .phone-screen {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      background: #0f1f36;
+      height: 28px;
+      border-radius: 0 0 16px 16px;
+      width: 110px;
+      margin: 0 auto;
+    }
 
     /* barra de progresso do jogo */
     .progress-bar {
-      height: 10px; background: #d0f0e5; border-radius: 50px; overflow: hidden;
+      height: 10px;
+      background: #d0f0e5;
+      border-radius: 50px;
+      overflow: hidden;
     }
-    .progress-fill { height: 100%; background: #1e7a5e; border-radius: 50px; transition: width 1s ease; }
 
-    .reveal { opacity:0; transform:translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
-    *:focus-visible { outline: 4px solid #d48000; outline-offset: 3px; }
+    .progress-fill {
+      height: 100%;
+      background: #1e7a5e;
+      border-radius: 50px;
+      transition: width 1s ease;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    *:focus-visible {
+      outline: 4px solid #d48000;
+      outline-offset: 3px;
+    }
+
+    /* Botão ghost branco — hover controlado por CSS (sem onmouseover inline) */
+    .btn-ghost-white-green:hover,
+    .btn-ghost-white-green:focus-visible {
+      color: #155c45;
+    }
 
     @media (max-width: 640px) {
-      html { font-size: 16px; }
-      .back-btn { top: 0.5rem; left: 0.5rem; padding: 0.4rem 0.8rem; font-size: 0.8rem; min-height: 40px; }
+      html {
+        font-size: 16px;
+      }
+
+      .back-btn {
+        top: 0.5rem;
+        left: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        min-height: 40px;
+      }
     }
   </style>
 </head>
+
 <body class="bg-cream text-gray-800 antialiased">
 
   <a href="#main" class="skip-link">Pular para o conteúdo</a>
 
-  <a href="index.html" class="back-btn" aria-label="Voltar para a página inicial do SêniorCare">
+  <a href="../index.html" class="back-btn" aria-label="Voltar para a página inicial do SêniorCare">
     <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
     Voltar ao Início
   </a>
@@ -92,16 +200,20 @@
   <main id="main">
 
     <!-- HERO -->
-    <section class="relative pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden" style="background: linear-gradient(145deg, #155c45 0%, #1e7a5e 60%, #28a07c 100%);" aria-labelledby="hero-title">
+    <section class="relative pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden"
+      style="background: linear-gradient(145deg, #155c45 0%, #1e7a5e 60%, #28a07c 100%);" aria-labelledby="hero-title">
 
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full" style="background:radial-gradient(circle, rgba(126,217,184,.15) 0%, transparent 70%);"></div>
-        <div class="absolute bottom-0 left-10 w-64 h-64 rounded-full" style="background:radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);"></div>
+        <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full"
+          style="background:radial-gradient(circle, rgba(126,217,184,.15) 0%, transparent 70%);"></div>
+        <div class="absolute bottom-0 left-10 w-64 h-64 rounded-full"
+          style="background:radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);"></div>
       </div>
 
       <div class="container mx-auto px-6 max-w-5xl relative">
 
-        <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6" style="background:rgba(255,255,255,.15); color:#d0f0e5;">
+        <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6"
+          style="background:rgba(255,255,255,.15); color:#d0f0e5;">
           <i class="fa-solid fa-person-walking mr-2" aria-hidden="true"></i>Bem-estar · VivaBem
         </span>
 
@@ -111,21 +223,27 @@
               Corpo ativo.<br>Mente <em class="not-italic" style="color:#7ed9b8;">afiada.</em><br>Vida plena.
             </h1>
             <p class="mb-8 leading-relaxed" style="color:rgba(255,255,255,.85); font-size:1.1rem;">
-              O VivaBem reúne exercícios leves, jogos cognitivos e dicas de saúde num único lugar — pensado do zero para a terceira idade viver com mais energia e alegria.
+              O VivaBem reúne exercícios leves, jogos cognitivos e dicas de saúde num único lugar — pensado do zero para
+              a terceira idade viver com mais energia e alegria.
             </p>
             <div class="flex flex-wrap gap-4">
-              <a href="#download" class="inline-flex items-center gap-2 bg-white font-bold rounded-full px-8 py-4 text-lg shadow-lg hover:bg-green-50 transition-all min-h-[52px]" style="color:#155c45;">
+              <a href="#download"
+                class="inline-flex items-center gap-2 bg-white font-bold rounded-full px-8 py-4 text-lg shadow-lg hover:bg-green-50 transition-all min-h-[52px]"
+                style="color:#155c45;">
                 <i class="fa-brands fa-google-play" aria-hidden="true"></i> Baixar Grátis
               </a>
-              <a href="#como-funciona" class="inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-6 py-4 hover:bg-white transition-all min-h-[52px]" style="transition: all .2s;" onmouseover="this.style.color='#155c45'" onmouseout="this.style.color='#fff'">
+              <a href="#como-funciona"
+                class="btn-ghost-white-green inline-flex items-center gap-2 border-2 border-white text-white font-bold rounded-full px-6 py-4 hover:bg-white transition-all min-h-[52px]">
                 Como funciona? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </a>
             </div>
           </div>
 
           <div class="flex justify-center" aria-hidden="true">
-            <div class="w-64 h-64 rounded-3xl flex flex-col items-center justify-center gap-4 shadow-2xl" style="background:rgba(255,255,255,.12); border:2px solid rgba(255,255,255,.2);">
-              <div class="w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg" style="background:rgba(255,255,255,.25);">
+            <div class="w-64 h-64 rounded-3xl flex flex-col items-center justify-center gap-4 shadow-2xl"
+              style="background:rgba(255,255,255,.12); border:2px solid rgba(255,255,255,.2);">
+              <div class="w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg"
+                style="background:rgba(255,255,255,.25);">
                 <i class="fa-solid fa-person-walking text-white text-5xl"></i>
               </div>
               <p class="text-white font-bold text-xl">VivaBem</p>
@@ -135,10 +253,15 @@
         </div>
 
         <div class="flex flex-wrap gap-6 mt-12 pt-8" style="border-top:1px solid rgba(255,255,255,.12);">
-          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i class="fa-solid fa-circle-check" style="color:#7ed9b8;" aria-hidden="true"></i> 100% Gratuito</span>
-          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i class="fa-solid fa-dumbbell" style="color:#7ed9b8;" aria-hidden="true"></i> Exercícios adaptados</span>
-          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i class="fa-solid fa-brain" style="color:#7ed9b8;" aria-hidden="true"></i> Jogos cognitivos diários</span>
-          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i class="fa-solid fa-chart-line" style="color:#7ed9b8;" aria-hidden="true"></i> Histórico de progresso</span>
+          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i
+              class="fa-solid fa-circle-check" style="color:#7ed9b8;" aria-hidden="true"></i> 100% Gratuito</span>
+          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i
+              class="fa-solid fa-dumbbell" style="color:#7ed9b8;" aria-hidden="true"></i> Exercícios adaptados</span>
+          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i
+              class="fa-solid fa-brain" style="color:#7ed9b8;" aria-hidden="true"></i> Jogos cognitivos diários</span>
+          <span class="flex items-center gap-2 text-sm font-semibold" style="color:rgba(255,255,255,.8);"><i
+              class="fa-solid fa-chart-line" style="color:#7ed9b8;" aria-hidden="true"></i> Histórico de
+            progresso</span>
         </div>
 
       </div>
@@ -149,62 +272,76 @@
       <div class="container mx-auto px-6 max-w-5xl">
 
         <div class="text-center mb-14 reveal">
-          <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-4" style="background:#d0f0e5; color:#155c45;">Como funciona</span>
-          <h2 id="cf-title" class="font-head leading-tight mb-3" style="color:#1b3358; font-size:clamp(1.7rem,3.5vw,2.4rem);">
+          <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-4"
+            style="background:#d0f0e5; color:#155c45;">Como funciona</span>
+          <h2 id="cf-title" class="font-head leading-tight mb-3"
+            style="color:#1b3358; font-size:clamp(1.7rem,3.5vw,2.4rem);">
             Três pilares para <em class="not-italic" style="color:#1e7a5e;">viver melhor</em>
           </h2>
-          <p class="text-gray-500 max-w-xl mx-auto" style="font-size:1.05rem;">Cada recurso do VivaBem foi desenvolvido por especialistas em saúde da terceira idade.</p>
+          <p class="text-gray-500 max-w-xl mx-auto" style="font-size:1.05rem;">Cada recurso do VivaBem foi desenvolvido
+            por especialistas em saúde da terceira idade.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
 
           <!-- Exercícios -->
           <div class="reveal rounded-2xl p-8 border" style="background:#d0f0e5; border-color:rgba(30,122,94,.2);">
-            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background:#1e7a5e;">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md"
+              style="background:#1e7a5e;">
               <i class="fa-solid fa-person-walking text-white text-2xl" aria-hidden="true"></i>
             </div>
             <span class="text-xs font-bold tracking-widest uppercase" style="color:#1e7a5e;">Pilar 01</span>
             <h3 class="font-head text-2xl mt-2 mb-3" style="color:#1b3358;">Exercícios leves</h3>
             <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
-              Catálogo com mais de 50 exercícios adaptados: alongamentos matinais, caminhadas guiadas por voz e ginástica sentada. Cada movimento tem vídeo com instrução clara e pausada.
+              Catálogo com mais de 50 exercícios adaptados: alongamentos matinais, caminhadas guiadas por voz e
+              ginástica sentada. Cada movimento tem vídeo com instrução clara e pausada.
             </p>
           </div>
 
           <!-- Jogos cognitivos -->
-          <div class="reveal rounded-2xl p-8 border" style="background:#d0f0e5; border-color:rgba(30,122,94,.2); animation-delay:.12s">
-            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background:#155c45;">
+          <div class="reveal rounded-2xl p-8 border"
+            style="background:#d0f0e5; border-color:rgba(30,122,94,.2); transition-delay:.12s">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md"
+              style="background:#155c45;">
               <i class="fa-solid fa-brain text-white text-2xl" aria-hidden="true"></i>
             </div>
             <span class="text-xs font-bold tracking-widest uppercase" style="color:#1e7a5e;">Pilar 02</span>
             <h3 class="font-head text-2xl mt-2 mb-3" style="color:#1b3358;">Jogos cognitivos</h3>
             <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
-              Desafios diários de memória, palavras cruzadas, jogo dos pares e raciocínio lógico — tudo com letras grandes e tempo sem pressão. O cérebro agradece um exercício por dia.
+              Desafios diários de memória, palavras cruzadas, jogo dos pares e raciocínio lógico — tudo com letras
+              grandes e tempo sem pressão. O cérebro agradece um exercício por dia.
             </p>
           </div>
 
           <!-- Histórico -->
-          <div class="reveal rounded-2xl p-8 border" style="background:#d0f0e5; border-color:rgba(30,122,94,.2); animation-delay:.24s">
-            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background:#1b3358;">
+          <div class="reveal rounded-2xl p-8 border"
+            style="background:#d0f0e5; border-color:rgba(30,122,94,.2); transition-delay:.24s">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md"
+              style="background:#1b3358;">
               <i class="fa-solid fa-chart-line text-white text-2xl" aria-hidden="true"></i>
             </div>
             <span class="text-xs font-bold tracking-widest uppercase" style="color:#1e7a5e;">Pilar 03</span>
             <h3 class="font-head text-2xl mt-2 mb-3" style="color:#1b3358;">Histórico de progresso</h3>
             <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
-              Veja quantos dias seguidos você se exercitou, quantos jogos completou e o quanto melhorou no tempo de resposta. Gráficos simples que motivam a continuar.
+              Veja quantos dias seguidos você se exercitou, quantos jogos completou e o quanto melhorou no tempo de
+              resposta. Gráficos simples que motivam a continuar.
             </p>
           </div>
 
         </div>
 
         <!-- Dicas de saúde extras -->
-        <div class="reveal mt-8 rounded-2xl p-8 flex items-start gap-6" style="background:#f0fdf7; border:1.5px solid rgba(30,122,94,.2);">
-          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow" style="background:#1e7a5e;">
+        <div class="reveal mt-8 rounded-2xl p-8 flex items-start gap-6"
+          style="background:#f0fdf7; border:1.5px solid rgba(30,122,94,.2);">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow"
+            style="background:#1e7a5e;">
             <i class="fa-solid fa-apple-whole text-white text-2xl" aria-hidden="true"></i>
           </div>
           <div>
             <h3 class="font-head text-xl mb-1" style="color:#1b3358;">+ Dicas de saúde e nutrição diárias</h3>
             <p class="text-gray-600 leading-relaxed" style="font-size:1rem;">
-              Todo dia, uma nova dica curta sobre alimentação, hidratação, sono e bem-estar — revisada por profissionais de saúde e escrita em linguagem simples, sem jargões.
+              Todo dia, uma nova dica curta sobre alimentação, hidratação, sono e bem-estar — revisada por profissionais
+              de saúde e escrita em linguagem simples, sem jargões.
             </p>
           </div>
         </div>
@@ -217,18 +354,23 @@
       <div class="container mx-auto px-6 max-w-5xl">
 
         <div class="text-center mb-14 reveal">
-          <span class="inline-block bg-white font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-4 shadow-sm" style="color:#1e7a5e;">Benefícios</span>
-          <h2 id="ben-title" class="font-head leading-tight" style="color:#1b3358; font-size:clamp(1.7rem,3.5vw,2.4rem);">
+          <span
+            class="inline-block bg-white font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-4 shadow-sm"
+            style="color:#1e7a5e;">Benefícios</span>
+          <h2 id="ben-title" class="font-head leading-tight"
+            style="color:#1b3358; font-size:clamp(1.7rem,3.5vw,2.4rem);">
             Bem-estar que se vê <em class="not-italic" style="color:#1e7a5e;">no dia a dia</em>
           </h2>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
 
-          <article class="reveal bg-white rounded-2xl p-8 shadow-sm border" style="border-color:rgba(30,122,94,.15);" aria-labelledby="ben-senior">
+          <article class="reveal bg-white rounded-2xl p-8 shadow-sm border" style="border-color:rgba(30,122,94,.15);"
+            aria-labelledby="ben-senior">
             <div class="text-5xl mb-4" aria-hidden="true">🧓</div>
             <p class="text-xs font-bold tracking-widest uppercase mb-1" style="color:#1e7a5e;">Para o idoso</p>
-            <h3 id="ben-senior" class="font-head text-2xl mb-4" style="color:#1b3358;">Alegria de se movimentar todo dia</h3>
+            <h3 id="ben-senior" class="font-head text-2xl mb-4" style="color:#1b3358;">Alegria de se movimentar todo dia
+            </h3>
             <ul class="space-y-4">
               <li class="flex items-start gap-3 text-gray-700" style="font-size:1rem;">
                 <i class="fa-solid fa-check mt-1 flex-shrink-0" style="color:#1e7a5e;" aria-hidden="true"></i>
@@ -249,7 +391,8 @@
             </ul>
           </article>
 
-          <article class="reveal rounded-2xl p-8 shadow-sm" style="background:#155c45; animation-delay:.12s;" aria-labelledby="ben-family">
+          <article class="reveal rounded-2xl p-8 shadow-sm" style="background:#155c45; transition-delay:.12s;"
+            aria-labelledby="ben-family">
             <div class="text-5xl mb-4" aria-hidden="true">👨‍👩‍👧</div>
             <p class="text-xs font-bold tracking-widest uppercase mb-1" style="color:#7ed9b8;">Para a família</p>
             <h3 id="ben-family" class="font-head text-white text-2xl mb-4">Ver o idoso feliz e ativo todo dia</h3>
@@ -282,8 +425,10 @@
       <div class="container mx-auto px-6 max-w-5xl">
 
         <div class="text-center mb-14 reveal">
-          <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-4" style="background:#d0f0e5; color:#155c45;">Interface do App</span>
-          <h2 id="mockup-title" class="font-head leading-tight" style="color:#1b3358; font-size:clamp(1.7rem,3.5vw,2.4rem);">
+          <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-4"
+            style="background:#d0f0e5; color:#155c45;">Interface do App</span>
+          <h2 id="mockup-title" class="font-head leading-tight"
+            style="color:#1b3358; font-size:clamp(1.7rem,3.5vw,2.4rem);">
             Veja como é <em class="not-italic" style="color:#1e7a5e;">fácil e bonito</em> de usar
           </h2>
         </div>
@@ -319,7 +464,9 @@
                         <p class="text-xs" style="color:rgba(255,255,255,.7);">10 min · Iniciante</p>
                       </div>
                     </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:60%;"></div></div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width:60%;"></div>
+                    </div>
                     <p class="text-xs mt-1" style="color:rgba(255,255,255,.7);">6 de 10 exercícios</p>
                   </div>
                   <div class="flex items-center gap-3 rounded-lg p-3 bg-gray-50">
@@ -328,7 +475,8 @@
                       <p class="font-bold text-sm" style="color:#1b3358;">Jogo da Memória</p>
                       <p class="text-xs text-gray-400">Toque para jogar</p>
                     </div>
-                    <div class="ml-auto text-xs font-bold rounded-full px-2 py-1" style="background:#d0f0e5; color:#1e7a5e;">Novo</div>
+                    <div class="ml-auto text-xs font-bold rounded-full px-2 py-1"
+                      style="background:#d0f0e5; color:#1e7a5e;">Novo</div>
                   </div>
                   <div class="flex items-center gap-3 rounded-lg p-3 bg-gray-50">
                     <span class="text-xl">🥗</span>
@@ -343,7 +491,7 @@
           </div>
 
           <!-- Tela do jogo -->
-          <div class="reveal" aria-label="Mockup da tela de jogo cognitivo do VivaBem" style="animation-delay:.15s">
+          <div class="reveal" aria-label="Mockup da tela de jogo cognitivo do VivaBem" style="transition-delay:.15s">
             <p class="text-center text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">Jogo Cognitivo</p>
             <div class="phone-shell">
               <div class="phone-notch"></div>
@@ -351,22 +499,33 @@
                 <div class="p-4" style="background:#155c45;">
                   <div class="flex justify-between items-center">
                     <p class="text-white font-bold text-sm">Jogo da Memória</p>
-                    <span class="text-xs font-bold rounded-full px-2 py-1" style="background:rgba(255,255,255,.15); color:#fff;">Nível 2</span>
+                    <span class="text-xs font-bold rounded-full px-2 py-1"
+                      style="background:rgba(255,255,255,.15); color:#fff;">Nível 2</span>
                   </div>
-                  <div class="mt-2 progress-bar"><div class="progress-fill" style="width:40%;"></div></div>
+                  <div class="mt-2 progress-bar">
+                    <div class="progress-fill" style="width:40%;"></div>
+                  </div>
                 </div>
                 <div class="p-4 flex-1 flex flex-col items-center">
                   <p class="text-gray-500 text-xs mb-3 text-center">Encontre os pares!</p>
                   <div class="grid grid-cols-4 gap-2 w-full">
                     <!-- cards do jogo -->
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl font-bold" style="background:#1e7a5e; color:#fff;">🌺</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl" style="background:#d0f0e5;">?</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl font-bold" style="background:#1e7a5e; color:#fff;">🦋</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl" style="background:#d0f0e5;">?</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl" style="background:#d0f0e5;">?</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl font-bold" style="background:#1e7a5e; color:#fff;">🌺</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl" style="background:#d0f0e5;">?</div>
-                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl" style="background:#d0f0e5;">?</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl font-bold"
+                      style="background:#1e7a5e; color:#fff;">🌺</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl"
+                      style="background:#d0f0e5;">?</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl font-bold"
+                      style="background:#1e7a5e; color:#fff;">🦋</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl"
+                      style="background:#d0f0e5;">?</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl"
+                      style="background:#d0f0e5;">?</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl font-bold"
+                      style="background:#1e7a5e; color:#fff;">🌺</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl"
+                      style="background:#d0f0e5;">?</div>
+                    <div class="aspect-square rounded-lg flex items-center justify-center text-xl"
+                      style="background:#d0f0e5;">?</div>
                   </div>
                   <div class="mt-4 w-full rounded-xl p-3 text-center" style="background:#f0fdf7;">
                     <p class="text-sm font-bold" style="color:#1b3358;">⏱ Acertos: 1 de 4</p>
@@ -382,22 +541,28 @@
     </section>
 
     <!-- CTA FINAL -->
-    <section id="download" class="py-12 md:py-20" style="background: linear-gradient(135deg, #155c45 0%, #1e7a5e 100%);" aria-labelledby="cta-title">
+    <section id="download" class="py-12 md:py-20" style="background: linear-gradient(135deg, #155c45 0%, #1e7a5e 100%);"
+      aria-labelledby="cta-title">
       <div class="container mx-auto px-6 max-w-3xl text-center">
         <div class="reveal">
-          <span class="inline-block font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-6" style="background:rgba(255,255,255,.15); color:#d0f0e5;">Baixe agora</span>
-          <h2 id="cta-title" class="font-head text-white leading-tight mb-4" style="font-size:clamp(1.8rem,4vw,2.8rem);">
+          <span class="inline-block font-bold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-6"
+            style="background:rgba(255,255,255,.15); color:#d0f0e5;">Baixe agora</span>
+          <h2 id="cta-title" class="font-head text-white leading-tight mb-4"
+            style="font-size:clamp(1.8rem,4vw,2.8rem);">
             Comece hoje mesmo a<br>viver com mais energia.
           </h2>
           <p class="mb-10 leading-relaxed" style="color:rgba(255,255,255,.82); font-size:1.1rem;">
             Gratuito, fácil de usar e sem publicidade. O VivaBem está esperando por você — é só dar o primeiro passo.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="javascript:void(0)" class="inline-flex items-center justify-center gap-3 bg-white font-bold rounded-full px-10 py-5 text-lg shadow-xl hover:bg-green-50 transition-all min-h-[60px]" style="color:#155c45;">
+            <a href="javascript:void(0)"
+              class="inline-flex items-center justify-center gap-3 bg-white font-bold rounded-full px-10 py-5 text-lg shadow-xl hover:bg-green-50 transition-all min-h-[60px]"
+              style="color:#155c45;">
               <i class="fa-brands fa-google-play text-xl" aria-hidden="true"></i>
               Baixar no Google Play
             </a>
-            <a href="javascript:void(0)" class="inline-flex items-center justify-center gap-3 border-2 border-white text-white font-bold rounded-full px-10 py-5 text-lg hover:bg-white transition-all min-h-[60px]" style="transition:all .2s;" onmouseover="this.style.color='#155c45'" onmouseout="this.style.color='#fff'">
+            <a href="javascript:void(0)"
+              class="btn-ghost-white-green inline-flex items-center justify-center gap-3 border-2 border-white text-white font-bold rounded-full px-10 py-5 text-lg hover:bg-white transition-all min-h-[60px]">
               <i class="fa-brands fa-app-store-ios text-xl" aria-hidden="true"></i>
               Baixar na App Store
             </a>
@@ -413,7 +578,8 @@
   </main>
 
   <footer class="py-8 text-center" style="background:#0f1f36;" role="contentinfo">
-    <a href="../index.html" class="inline-flex items-center gap-2 font-semibold transition-colors text-sm mb-3" style="color:#7ed9b8;">
+    <a href="../index.html" class="inline-flex items-center gap-2 font-semibold transition-colors text-sm mb-3"
+      style="color:#7ed9b8;">
       <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar para o SêniorCare
     </a>
     <p class="text-xs mt-2" style="color:#4b5563;">© 2025 SêniorCare · VivaBem · Todos os direitos reservados.</p>
@@ -422,4 +588,5 @@
   <script src="../assets/js/main.js" defer></script>
 
 </body>
+
 </html>

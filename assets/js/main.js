@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Menu mobile ---- */
   const toggle = document.getElementById('menuToggle');
-  const nav    = document.getElementById('mainNav');
+  const nav = document.getElementById('mainNav');
 
   if (toggle && nav) {
     const icon = toggle.querySelector('i');
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggle.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { 
-      if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); 
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
     });
   }
 
@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (motionOK) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) { 
-          e.target.classList.add('visible'); 
-          io.unobserve(e.target); 
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
         }
       });
     }, { threshold: 0.12 });
-    
+
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
