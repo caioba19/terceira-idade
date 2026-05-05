@@ -2,7 +2,6 @@
  * SêniorCare - Main Javascript
  * Handles mobile navigation and scroll-reveal animations securely across all pages.
  */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Menu mobile ---- */
@@ -32,8 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    toggle.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+    toggle.addEventListener('click', () =>
+      nav.classList.contains('open') ? closeMenu() : openMenu()
+    );
+
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
     });
@@ -59,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Progress Bars (VivaBem) ---- */
   const bars = document.querySelectorAll('.progress-fill');
+
   if (bars.length > 0) {
     const barObserver = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -68,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.3 });
+
     bars.forEach(b => barObserver.observe(b));
   }
 
